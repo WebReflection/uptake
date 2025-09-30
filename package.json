@@ -1,6 +1,6 @@
 {
   "name": "uptake",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Run a Bun cluster with a shared \"worker\" module",
   "main": "index.js",
   "type": "module",
@@ -15,7 +15,11 @@
     "type": "git",
     "url": "git+https://github.com/WebReflection/uptake.git"
   },
-  "keywords": ["bun", "cluster", "worker"],
+  "keywords": [
+    "bun",
+    "cluster",
+    "worker"
+  ],
   "author": "Andrea Giammarchi (https://github.com/WebReflection)",
   "license": "MIT",
   "bugs": {
