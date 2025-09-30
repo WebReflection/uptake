@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "description": "Run a Bun cluster with a shared \"worker\" module",
   "main": "index.js",
+  "module": "index.js",
   "type": "module",
   "bin": {
     "uptake": "cli.js"
   },
   "files": [
     "index.js",
-    "cli.js"
+    "cli.js",
+    "LICENSE",
+    "README.md"
   ],
   "repository": {
     "type": "git",

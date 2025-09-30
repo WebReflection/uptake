@@ -20,7 +20,7 @@ for (let i = 1; i < argv.length; i++) {
         worker = argv[++i];
         break;
       case '--pool':
-        pool = parseInt(argv[++i], 10);
+        pool = parseInt(argv[++i], 10) || void 0;
         break;
     }
   }
@@ -33,7 +33,7 @@ for (let i = 1; i < argv.length; i++) {
         worker = arg.slice(eq + 1);
         break;
       case '--pool':
-        pool = parseInt(arg.slice(eq + 1), 10);
+        pool = parseInt(arg.slice(eq + 1), 10) || void 0;
         break;
     }
   }
@@ -50,8 +50,8 @@ function help() {
   console.log('');
   console.log('\x1b[1muptake\x1b[0m 🙃 \x1b[2mrun a Bun cluster with a shared "worker" module\x1b[0m');
   console.log('');
-  console.log(' \x1b[2m  usage:\x1b[0m shared --main=main.js --worker=worker.js [--pool=amount]');
-  console.log(' \x1b[2m ... or:\x1b[0m shared --main main.js --worker worker.js [--pool amount]');
+  console.log(' \x1b[2m  usage:\x1b[0m uptake --main=main.js --worker=worker.js [--pool=amount]');
+  console.log(' \x1b[2m ... or:\x1b[0m uptake --main main.js --worker worker.js [--pool amount]');
   console.log('');
   console.log(' \x1b[2moptions:\x1b[0m');
   console.log('   --main\x1b[0m \x1b[2m  - main module to run across multiple CPU cores\x1b[0m');

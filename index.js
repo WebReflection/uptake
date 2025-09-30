@@ -1,5 +1,6 @@
 import { cpus } from 'node:os';
 const { isMainThread } = Bun;
+const { Worker } = globalThis;
 const { url } = import.meta;
 
 let shared, objectURL;
@@ -13,8 +14,16 @@ if (isMainThread) {
   shared = async ({ main, worker, pool = cpus().length - 1 }) => {
     for (const w of workers) w.terminate();
     if (objectURL) revokeObjectURL(objectURL);
+    let decrement = 0;
+    globalThis.Worker = class extends Worker {
+      constructor(...args) {
+        super(...args);
+        decrement++;
+      }
+    };
     const uid = crypto.randomUUID();
     const module = await import(worker);
+    globalThis.Worker = Worker;
     const exports = Object.keys(module).map(key => {
       const value = module[key];
       const type = typeof value;
@@ -47,7 +56,7 @@ if (isMainThread) {
         mime
       )
     );
-    for (let i = 0, size = max(pool, 1); i < size; i++) {
+    for (let i = 0, size = max(pool - decrement, 1); i < size; i++) {
       const worker = new Worker(objectURL);
       worker.addEventListener('error', error);
       worker.addEventListener('message', message);
