@@ -3,7 +3,7 @@
 ```sh
 $ bunx uptake --help
 
-uptake 🙃 run a Bun cluster with a shared "worker" module
+uptake 🙃 run a Bun/Deno cluster with a shared "worker" module
 
    usage: uptake --main=main.js --worker=worker.js [--pool=amount]
   ... or: uptake --main main.js --worker worker.js [--pool amount]
@@ -22,6 +22,10 @@ The `main` entry will actually be a worker where each worker can `import shared 
 The concept is that the main program actually runs as cluster but all clusters can delegate to the single *shared worker* one-off operations. Think about this logic as one that allows you to connect remotely to any service once, to any DB once, and offer a way to either register or query such services in a shared way so that a single cache can be shared across clusters with relative ease.
 
 ### Example
+
+See [test](./test/) folder to check how both *Bun* and *Deno* can work in a similar way.
+
+**Bun Example**
 
 ```js
 // main.js

@@ -8,6 +8,10 @@
   "bin": {
     "uptake": "cli.js"
   },
+  "scripts": {
+    "test:bun": "PORT=3001 bun cli.js --main test/main.js --worker test/worker.js",
+    "test:deno": "PORT=3002 deno --unstable-net cli.js --main test/deno.js --worker test/worker.js"
+  },
   "files": [
     "index.js",
     "cli.js",
@@ -20,6 +24,7 @@
   },
   "keywords": [
     "bun",
+    "deno",
     "cluster",
     "worker"
   ],

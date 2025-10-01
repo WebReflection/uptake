@@ -1,9 +1,15 @@
 import { cpus } from 'node:os';
-const { isMainThread } = Bun;
 const { Worker } = globalThis;
 const { url } = import.meta;
 
-let shared, objectURL;
+let isMainThread, objectURL, shared;
+
+try {
+  ({ isMainThread } = Bun);
+}
+catch {
+  ({ isMainThread } = await import('node:worker_threads'));
+}
 
 if (isMainThread) {
   const { max } = Math;
@@ -57,7 +63,7 @@ if (isMainThread) {
       )
     );
     for (let i = 0, size = max(pool - decrement, 1); i < size; i++) {
-      const worker = new Worker(objectURL);
+      const worker = new Worker(objectURL, { type: 'module' });
       worker.addEventListener('error', error);
       worker.addEventListener('message', message);
     }
