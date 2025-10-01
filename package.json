@@ -1,6 +1,6 @@
 {
   "name": "uptake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Run a Bun cluster with a shared \"worker\" module",
   "main": "index.js",
   "module": "index.js",
